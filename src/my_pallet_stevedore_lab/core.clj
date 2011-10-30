@@ -22,10 +22,19 @@
 ; https://github.com/pallet/stevedore/blob/develop/test/pallet/stevedore/bash_test.clj
 
 (fact
-  (with-script-language :pallet.stevedore.bash/bash
-    (script (if (= foo bar) (println fred)))) => "if [ \\( \"foo\" == \"bar\" \\) ]; then echo fred;fi")
+  (with-script-language :pallet.stevedore.bash/bash (script (if (= foo bar) (println fred))))
+  => "if [ \\( \"foo\" == \"bar\" \\) ]; then echo fred;fi")
 
-;.;. Happiness comes when you believe that you have done something truly
-;.;. meaningful. -- Yan
 (fact
-  (with-script-language :pallet.stevedore.bash/bash (script (if (file-exists? "~/bin/cake") (println (quoted "cool"))))) => "if [ -e ~/bin/cake ]; then echo \"cool\";fi")
+  (with-script-language :pallet.stevedore.bash/bash (script (if (file-exists? "~/bin/cake") (println (quoted "cool")))))
+  => "if [ -e ~/bin/cake ]; then echo \"cool\";fi")
+
+(fact
+  (with-script-language :pallet.stevedore.bash/bash (script (if (&& (file-exists? "~/bin") (file-exists? "~/bin/cake")) (println (quoted "pretty cool")))))
+  => "if [ \\( -e ~/bin -a -e ~/bin/cake \\) ]; then echo \"pretty cool\";fi")
+
+;.;. Before the reward there must be labor. You plant before you
+;.;. harvest. You sow in tears before you reap joy. -- Ransom
+(fact
+  (with-script-language :pallet.stevedore.bash/bash (script (sudo aptitude install graphviz git emacs)))
+  => "sudo aptitude install graphviz git emacs")
