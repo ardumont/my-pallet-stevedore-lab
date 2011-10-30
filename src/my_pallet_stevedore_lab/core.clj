@@ -33,8 +33,13 @@
   (with-script-language :pallet.stevedore.bash/bash (script (if (&& (file-exists? "~/bin") (file-exists? "~/bin/cake")) (println (quoted "pretty cool")))))
   => "if [ \\( -e ~/bin -a -e ~/bin/cake \\) ]; then echo \"pretty cool\";fi")
 
-;.;. Before the reward there must be labor. You plant before you
-;.;. harvest. You sow in tears before you reap joy. -- Ransom
 (fact
   (with-script-language :pallet.stevedore.bash/bash (script (sudo aptitude install graphviz git emacs)))
   => "sudo aptitude install graphviz git emacs")
+
+;.;. FAIL at (NO_SOURCE_FILE:1)
+;.;.     Expected: "sudo aptitude install graphviz git emacs"
+;.;.       Actual: "yes | sudo aptitude install graphviz git emacs"
+(fact
+  (with-script-language :pallet.stevedore.bash/bash (script (pipe yes (sudo aptitude install graphviz git emacs))))
+  => "yes | sudo aptitude install graphviz git emacs")
