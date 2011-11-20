@@ -37,9 +37,10 @@
   (with-script-language :pallet.stevedore.bash/bash (script (sudo aptitude install graphviz git emacs)))
   => "sudo aptitude install graphviz git emacs")
 
-;.;. FAIL at (NO_SOURCE_FILE:1)
-;.;.     Expected: "sudo aptitude install graphviz git emacs"
-;.;.       Actual: "yes | sudo aptitude install graphviz git emacs"
+;.;. When someone asks you if you're a god, you say 'YES'! -- Zeddemore
 (fact
   (with-script-language :pallet.stevedore.bash/bash (script (pipe yes (sudo aptitude install graphviz git emacs))))
   => "yes | sudo aptitude install graphviz git emacs")
+
+(println "--------- END OF TEST-PALLET ----------" (java.util.Date.))
+
