@@ -32,7 +32,7 @@
   [wdir]
   (let [repositories '("my-org-files" "reading-pro-git" "fest-assert-goodies"
                        "slash-my-home-slash-bin" "stumpwm-config" "my-mockito-lab"
-                       "conkeror-saner-default" "my-project-euler-lab" "my-node-js-lab" 
+                       "conkeror-saner-defaults" "my-project-euler-lab" "my-node-js-lab" 
                        "my-pallet-stevedore-lab" "luhnybin")
         repositories-denlab '("clojure-plays-checkers"
                               "clojure-dojo-at-lunch")]
